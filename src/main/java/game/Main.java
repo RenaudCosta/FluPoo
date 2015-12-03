@@ -7,7 +7,9 @@ public class Main {
 
 
         Map map = new Map(5,5);
+        //while (!map.gameOver()) {
         map.simulateOneStep();
+        //}
 
 
 
