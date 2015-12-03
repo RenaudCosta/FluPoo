@@ -10,7 +10,6 @@ import java.util.Random;
 public abstract class Animal extends Living {
 
     private final static double sickRate = 0.3; // between 0 and 1
-    //TODO: Comparer isSickChance avec sickRate
 
     public Animal()
     {
