@@ -11,10 +11,13 @@ public class Human extends Living {
 
     public Human()
     {
-        if (this.isSickChance < this.sickRate)
+        if (this.isSickChance < this.sickRate) {
             this.state = State.SICK;
+            this.daysToWait = 3;
+        }
         else
             this.state = State.HEALTHY;
+        mortalityRate = 0.1;
     }
 
     public Human(State state)
@@ -24,6 +27,11 @@ public class Human extends Living {
 
     @Override
     public String toString() {
-        return "Hman";
+        if (this.state.equals(State.HEALTHY))
+            return "Hman";
+        else if (this.state.equals(State.DEAD))
+            return "Hmnx";
+        else
+            return "Hmn"+daysToWait;
     }
 }

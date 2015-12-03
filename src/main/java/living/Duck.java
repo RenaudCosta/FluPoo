@@ -9,7 +9,7 @@ public class Duck extends Flying {
 
     public Duck()
     {
-        this.state = State.HEALTHY;
+
     }
 
     public Duck(State state)
@@ -19,7 +19,12 @@ public class Duck extends Flying {
 
     public String toString()
     {
-        return "Duck";
+        if (this.state.equals(State.HEALTHY))
+            return "Duck";
+        else if (this.state.equals(State.DEAD))
+            return "Dckx";
+        else
+            return "Dck"+daysToWait;
     }
 
 }

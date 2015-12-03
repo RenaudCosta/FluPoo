@@ -9,7 +9,7 @@ public class Chicken extends Flying {
 
     public Chicken()
     {
-        this.state = State.HEALTHY;
+
     }
 
     public Chicken(State state)
@@ -19,6 +19,11 @@ public class Chicken extends Flying {
 
     public String toString()
     {
-        return "Chck";
+        if (this.state.equals(State.HEALTHY))
+            return "Chck";
+        else if (this.state.equals(State.DEAD))
+            return "Chkx";
+        else
+            return "Chk"+daysToWait;
     }
 }

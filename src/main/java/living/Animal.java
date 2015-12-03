@@ -9,14 +9,17 @@ import java.util.Random;
  */
 public abstract class Animal extends Living {
 
-    private final static double sickRate = 0.3; // between 0 and 1
+    protected final static double sickRate = 0.3; // between 0 and 1
 
     public Animal()
     {
-        if (this.isSickChance < this.sickRate)
+        if (this.isSickChance < this.sickRate) {
             this.state = State.SICK;
+            this.daysToWait = 3;
+        }
         else
             this.state = State.HEALTHY;
+        this.mortalityRate = 0.4;
     }
 
     public String toString()

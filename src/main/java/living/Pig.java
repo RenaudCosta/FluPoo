@@ -9,7 +9,7 @@ public class Pig  extends Animal {
 
     public Pig()
     {
-        this.state = State.HEALTHY;
+
     }
 
     public Pig(State state)
@@ -19,7 +19,12 @@ public class Pig  extends Animal {
 
     public String toString()
     {
-        return "Pigg";
+        if (this.state.equals(State.HEALTHY))
+            return "Pigg";
+        else if (this.state.equals(State.DEAD))
+            return "Pigx";
+        else
+            return "Pig"+daysToWait;
     }
 
 

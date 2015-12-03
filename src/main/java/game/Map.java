@@ -90,14 +90,24 @@ public class Map {
         {
             for (Case c : cArray)
             {
-                if (c.getEntity() != null) {
+                if (c.getEntity() != null && !c.getEntity().getState().equals(State.DEAD)) {
+
+                    //Mettre a jour l'etat des entités malades
+                    if (c.getEntity().getDaysToWait() > 0)
+                        c.getEntity().decrDaysToWait(); // On ne change pas encore l'etat, on baisse d'un jour la duree a attendre pour changer d'état
+                    if (c.getEntity().getDaysToWait() == 0)
+                        c.getEntity().changeState(); // On change l'etat de l'entité
+
+
+                    //NEIGHBOUR IS CONTAGIOUS -> PROBABILITY OF GETTING SICK
                     for (Direction dir : Direction.values()) {
                         if ((c.getNeighbour(this, dir) != null) && (c.getNeighbour(this, dir).getState()).equals(State.CONTAGIOUS)) {
-                            //NEIGHBOUR IS CONTAGIOUS -> PROBABILITY OF GETTING SICK
                             Random rnd = new Random();
                             double sickChance = rnd.nextDouble();
                         }
                     }
+
+
                     //move the entity
                     Random moveChanceRnd = new Random();
                     int moveChance = moveChanceRnd.nextInt(2);
@@ -107,9 +117,13 @@ public class Map {
                         Direction movingDirection = directions[intDir];
                         c.swap(c.getNeighbourCase(this, movingDirection));
                     }
+
+
+
                 }
             }
         }
+        System.out.println(this);
 
     }
 
@@ -159,7 +173,14 @@ public class Map {
      */
     public boolean gameOver()
     {
+        boolean gameOver = true;
+        for (Case [] c1 : cases)
+        {
+            for (Case c : c1)
+            {
 
-        return false;
+            }
+        }
+        return gameOver;
     }
 }
