@@ -7,16 +7,9 @@ public class Main {
 
 
         Map map = new Map(5,5);
-        //while (!map.gameOver()) {
-        map.simulateOneStep();
-        map.simulateOneStep();
-        map.simulateOneStep();
-        map.simulateOneStep();
-        map.simulateOneStep();
-        map.simulateOneStep();
-
-
-        //}
+        while (!map.gameOver()) {
+            map.simulateOneStep();
+        }
 
 
 

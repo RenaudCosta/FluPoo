@@ -115,7 +115,9 @@ public class Map {
                         Random rndDir = new Random();
                         int intDir = rndDir.nextInt(4);
                         Direction movingDirection = directions[intDir];
-                        c.swap(c.getNeighbourCase(this, movingDirection));
+
+                        if (c.getNeighbour(this,movingDirection) == null || !c.getNeighbour(this,movingDirection).getState().equals(State.DEAD))
+                            c.swap(c.getNeighbourCase(this, movingDirection));
                     }
 
 
@@ -124,7 +126,6 @@ public class Map {
             }
         }
         System.out.println(this);
-
     }
 
     public Case[][] getCases()
@@ -173,14 +174,13 @@ public class Map {
      */
     public boolean gameOver()
     {
-        boolean gameOver = true;
         for (Case [] c1 : cases)
         {
             for (Case c : c1)
             {
-
+                if (c.getEntity() != null && !c.getEntity().getState().equals(State.DEAD) && !c.getEntity().getState().equals(State.HEALTHY)) return false;
             }
         }
-        return gameOver;
+        return true;
     }
 }

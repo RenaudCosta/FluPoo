@@ -9,7 +9,7 @@ import java.util.Random;
  */
 public abstract class Animal extends Living {
 
-    protected final static double sickRate = 0.3; // between 0 and 1
+    protected final static double sickRate = 0.3; // Chances of being sick upon start
 
     public Animal()
     {

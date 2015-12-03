@@ -10,7 +10,7 @@ import java.util.Random;
 public abstract class Living {
 
     protected State state;
-    protected int contagionRate;
+    protected double contagionRate;
     protected double isSickChance;
     protected double mortalityRate;
 
@@ -25,6 +25,11 @@ public abstract class Living {
     public State getState()
     {
         return state;
+    }
+
+    public double getContagionRate()
+    {
+        return contagionRate;
     }
 
     public int getDaysToWait() { return daysToWait; }
@@ -47,7 +52,11 @@ public abstract class Living {
                 if (dieChance < this.mortalityRate)
                     this.state = State.DEAD;
                 else
-                    this.state = State.HEALTHY;
+                    this.state = State.RECOVERING;
+                setDaysToWait(3);
+                break;
+            case RECOVERING:
+                state = State.HEALTHY;
                 setDaysToWait(-1);
         }
 
