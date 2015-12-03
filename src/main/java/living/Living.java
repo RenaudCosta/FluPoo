@@ -8,12 +8,13 @@ import java.util.Random;
  * Created by renaud on 26/11/2015.
  */
 public abstract class Living {
+
     protected State state;
     protected int contagionRate;
     protected double isSickChance;
     protected int mortalityRate;
 
-    public Living()
+    public Living() //TODO: Gerer les différentes maladies
     {
         Random contagion = new Random();
         isSickChance = contagion.nextDouble();

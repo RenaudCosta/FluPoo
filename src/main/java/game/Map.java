@@ -146,4 +146,20 @@ public class Map {
         }
         return tab;
     }
+
+
+    //TODO: gameOver()
+    /*
+    *
+    *   Renvoie vrai si:
+    *   - Que des null sur la map
+    *   - Que des Living HEALTHY
+    *   - Que des Living DEAD
+    *
+     */
+    public boolean gameOver()
+    {
+
+
+    }
 }
