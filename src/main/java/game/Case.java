@@ -65,7 +65,33 @@ public class Case {
             case NORTHWEST:
                 return (x-1 >= 0 && y-1 >= 0) ? cases[x-1][y-1].getEntity() : entity;
             default:
-                return new Human();
+                return null;
+        }
+    }
+
+    public Case getNeighbourCase(Map map, Direction dir)
+    {
+        Case[][] cases = map.getCases();
+        switch (dir)
+        {
+            case NORTH:
+                return (y-1)>=0 ? cases[x][y-1] : this; // RETOURNER L'ENTITE DE LA CASE AU DESSUS. SI ON SORT DE LA MAP, RETOURNER L'ENTITE PRESENTE SUR LA CASE COURANTE
+            case SOUTH:
+                return (y+1)<map.getHeight() ? cases[x][y+1] : this;
+            case EAST:
+                return (x+1) < map.getWidth() ? cases[x+1][y] : this;
+            case WEST:
+                return (x-1) >= 0 ? cases[x-1][y] : this;
+            case NORTHEAST:
+                return (x+1 < map.getWidth() && y-1>=0) ? cases[x+1][y-1] : this;
+            case SOUTHEAST:
+                return (x+1 < map.getWidth() && y+1 < map.getHeight()) ? cases[x+1][y+1] : this;
+            case SOUTHWEST:
+                return (x-1 >= 0 && y+1 < map.getHeight()) ? cases[x-1][y+1] : this;
+            case NORTHWEST:
+                return (x-1 >= 0 && y-1 >= 0) ? cases[x-1][y-1] : this;
+            default:
+                return null;
         }
     }
 
@@ -76,4 +102,20 @@ public class Case {
     public int getY() {
         return y;
     }
+
+    public void setEntity(Living entity)
+    {
+        this.entity = entity;
+    }
+
+    public void swap(Case c)
+    {
+        Living thisEntity = this.entity;
+        Living otherEntity = c.getEntity();
+        c.setEntity(thisEntity);
+        this.setEntity(otherEntity);
+
+    }
+
+
 }

@@ -12,7 +12,8 @@ import java.util.Random;
  */
 public class Map {
 
-    private final static State[] 
+    //définition de la correspondance entre des nombres de 0 à 7 et les directions.
+    private final static Direction[] directions = {Direction.NORTH,Direction.WEST,Direction.SOUTH,Direction.EAST,Direction.NORTHWEST,Direction.NORTHEAST,Direction.SOUTHWEST,Direction.SOUTHEAST};
 
     private final static int DEFAULT_HUMANRATE = 5;
     private final static int DEFAULT_DUCKRATE = 1;
@@ -92,15 +93,19 @@ public class Map {
                 if (c.getEntity() != null) {
                     for (Direction dir : Direction.values()) {
                         if ((c.getNeighbour(this, dir) != null) && (c.getNeighbour(this, dir).getState()).equals(State.CONTAGIOUS)) {
-                            Random rndDir = new Random();
-                            int intDir = rndDir.nextInt(9);
-
-
                             //NEIGHBOUR IS CONTAGIOUS -> PROBABILITY OF GETTING SICK
                             Random rnd = new Random();
                             double sickChance = rnd.nextDouble();
                         }
-                        System.out.println("-");
+                    }
+                    //move the entity
+                    Random moveChanceRnd = new Random();
+                    int moveChance = moveChanceRnd.nextInt(2);
+                    if (moveChance == 1) {
+                        Random rndDir = new Random();
+                        int intDir = rndDir.nextInt(4);
+                        Direction movingDirection = directions[intDir];
+                        c.swap(c.getNeighbourCase(this, movingDirection));
                     }
                 }
             }
