@@ -7,9 +7,14 @@ import enu.State;
  */
 public class Human extends Living {
 
+    private double sickRate = 0.1;
+
     public Human()
     {
-        this.state = State.HEALTHY;
+        if (this.isSickChance < this.sickRate)
+            this.state = State.SICK;
+        else
+            this.state = State.HEALTHY;
     }
 
     public Human(State state)
