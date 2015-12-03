@@ -16,4 +16,9 @@ public class Chicken extends Flying {
     {
         this.state = state;
     }
+
+    public String toString()
+    {
+        return "Chck";
+    }
 }

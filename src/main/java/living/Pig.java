@@ -17,5 +17,10 @@ public class Pig  extends Animal {
         this.state = state;
     }
 
+    public String toString()
+    {
+        return "Pigg";
+    }
+
 
 }

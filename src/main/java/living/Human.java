@@ -19,6 +19,6 @@ public class Human extends Living {
 
     @Override
     public String toString() {
-        return "Human{}";
+        return "Hman";
     }
 }

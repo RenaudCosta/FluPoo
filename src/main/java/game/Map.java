@@ -139,8 +139,10 @@ public class Map {
         {
             for (int i = 0; i < width;i++)
             {
-                tab += cases[i][j].toString();
+                if (cases[i][j].getEntity() != null) tab += cases[i][j].getEntity().toString()+" ";
+                else tab+="null ";
             }
+            tab += "\n";
         }
         return tab;
     }

@@ -20,4 +20,9 @@ public abstract class Living {
         return state;
     }
 
+    public String toString()
+    {
+        return "";
+    }
+
 }

@@ -26,9 +26,7 @@ public class Case {
 
     @Override
     public String toString() {
-        return "Case{" +
-                "entity=" + entity +
-                '}';
+        return entity.toString();
     }
 
     public Case(int x, int y, Living living)

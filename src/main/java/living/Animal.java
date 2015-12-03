@@ -18,4 +18,9 @@ public abstract class Animal extends Living {
         if (sickChance <= sickRate) this.state = State.SICK;
     }
 
+    public String toString()
+    {
+        return "";
+    }
+
 }

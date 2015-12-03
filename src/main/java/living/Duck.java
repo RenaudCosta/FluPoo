@@ -17,4 +17,9 @@ public class Duck extends Flying {
         this.state = state;
     }
 
+    public String toString()
+    {
+        return "Duck";
+    }
+
 }
