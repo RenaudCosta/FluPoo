@@ -1,13 +1,17 @@
 package game;
 
 import enu.Direction;
+import enu.State;
 import living.Human;
 import living.Living;
+
+import java.util.Random;
 
 /**
  * Created by renaud on 26/11/2015.
  */
 public class Case {
+    private final static Direction[] directions = {Direction.NORTH,Direction.WEST,Direction.SOUTH,Direction.EAST,Direction.NORTHWEST,Direction.NORTHEAST,Direction.SOUTHWEST,Direction.SOUTHEAST};
     private Living entity;
     private int x, y;
 
@@ -65,6 +69,38 @@ public class Case {
             default:
                 return null;
         }
+    }
+
+    public void contagion(Map map)
+    {
+        for (Direction dir : Direction.values()) {
+            if ((this.getNeighbour(map, dir) != null) && (this.getNeighbour(map, dir).getState()).equals(State.CONTAGIOUS)) {
+                Random rnd = new Random();
+                double sickChance = rnd.nextDouble();
+            }
+        }
+    }
+
+    public void move(Map map)
+    {
+        Random moveChanceRnd = new Random();
+        int moveChance = moveChanceRnd.nextInt(2);
+        if (moveChance == 1) {
+            Random rndDir = new Random();
+            int intDir = rndDir.nextInt(4);
+            Direction movingDirection = directions[intDir];
+
+            if (this.getNeighbour(map,movingDirection) == null || !this.getNeighbour(map,movingDirection).getState().equals(State.DEAD))
+                this.swap(this.getNeighbourCase(map, movingDirection));
+        }
+    }
+
+    public void updateState()
+    {
+        if (this.getEntity().getDaysToWait() > 0)
+            this.getEntity().decrDaysToWait(); // On ne change pas encore l'etat, on baisse d'un jour la duree a attendre pour changer d'état
+        if (this.getEntity().getDaysToWait() == 0)
+            this.getEntity().changeState(); // On change l'etat de l'entité
     }
 
     public Case getNeighbourCase(Map map, Direction dir)

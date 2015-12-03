@@ -22,6 +22,31 @@ public abstract class Animal extends Living {
         this.mortalityRate = 0.4;
     }
 
+    @Override
+    public void changeState()
+    {
+        switch (state)
+        {
+            case SICK:
+                state = State.CONTAGIOUS;
+                setDaysToWait(4);
+                break;
+            case CONTAGIOUS:
+                Random dieChanceRnd = new Random();
+                double dieChance = dieChanceRnd.nextDouble();
+                if (dieChance < this.mortalityRate) {
+                    this.state = State.DEAD;
+                    setDaysToWait(-1);
+                }
+                else {
+                    this.state = State.CONTAGIOUS;
+                    setDaysToWait(3);
+                }
+                break;
+        }
+
+    }
+
     public String toString()
     {
         return "";

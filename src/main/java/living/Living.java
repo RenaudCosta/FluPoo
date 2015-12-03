@@ -1,6 +1,7 @@
 package living;
 
 import enu.State;
+import sicknesses.Sickness;
 
 import java.util.Random;
 
@@ -13,10 +14,11 @@ public abstract class Living {
     protected double contagionRate;
     protected double isSickChance;
     protected double mortalityRate;
+    protected Sickness sickness;
 
     protected int daysToWait = -1;
 
-    public Living() //TODO: Gerer les différentes maladies
+    public Living()
     {
         Random contagion = new Random();
         isSickChance = contagion.nextDouble();
@@ -49,17 +51,32 @@ public abstract class Living {
             case CONTAGIOUS:
                 Random dieChanceRnd = new Random();
                 double dieChance = dieChanceRnd.nextDouble();
-                if (dieChance < this.mortalityRate)
+                if (dieChance < this.mortalityRate) {
                     this.state = State.DEAD;
+                    setDaysToWait(-1);
+                }
                 else
+                {
                     this.state = State.RECOVERING;
-                setDaysToWait(3);
+                    setDaysToWait(3);
+                }
                 break;
             case RECOVERING:
                 state = State.HEALTHY;
                 setDaysToWait(-1);
         }
 
+    }
+
+
+    public Sickness getSickness()
+    {
+        return sickness;
+    }
+
+    public void setSickness(Sickness s)
+    {
+        sickness = s;
     }
 
     public String toString()

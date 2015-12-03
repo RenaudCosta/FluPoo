@@ -93,35 +93,13 @@ public class Map {
                 if (c.getEntity() != null && !c.getEntity().getState().equals(State.DEAD)) {
 
                     //Mettre a jour l'etat des entités malades
-                    if (c.getEntity().getDaysToWait() > 0)
-                        c.getEntity().decrDaysToWait(); // On ne change pas encore l'etat, on baisse d'un jour la duree a attendre pour changer d'état
-                    if (c.getEntity().getDaysToWait() == 0)
-                        c.getEntity().changeState(); // On change l'etat de l'entité
-
+                    c.updateState();
 
                     //NEIGHBOUR IS CONTAGIOUS -> PROBABILITY OF GETTING SICK
-                    for (Direction dir : Direction.values()) {
-                        if ((c.getNeighbour(this, dir) != null) && (c.getNeighbour(this, dir).getState()).equals(State.CONTAGIOUS)) {
-                            Random rnd = new Random();
-                            double sickChance = rnd.nextDouble();
-                        }
-                    }
-
+                    c.contagion(this);
 
                     //move the entity
-                    Random moveChanceRnd = new Random();
-                    int moveChance = moveChanceRnd.nextInt(2);
-                    if (moveChance == 1) {
-                        Random rndDir = new Random();
-                        int intDir = rndDir.nextInt(4);
-                        Direction movingDirection = directions[intDir];
-
-                        if (c.getNeighbour(this,movingDirection) == null || !c.getNeighbour(this,movingDirection).getState().equals(State.DEAD))
-                            c.swap(c.getNeighbourCase(this, movingDirection));
-                    }
-
-
-
+                    c.move(this);
                 }
             }
         }
@@ -163,7 +141,6 @@ public class Map {
     }
 
 
-    //TODO: gameOver()
     /*
     *
     *   Renvoie vrai si:
