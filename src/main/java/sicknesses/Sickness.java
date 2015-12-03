@@ -31,4 +31,5 @@ public abstract class Sickness {
     {
         return severity;
     }
+
 }

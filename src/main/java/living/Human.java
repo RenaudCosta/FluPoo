@@ -13,7 +13,7 @@ public class Human extends Living {
     {
         if (this.isSickChance < this.sickRate) {
             this.state = State.SICK;
-            this.daysToWait = 3;
+            this.daysToWait = sickness.getIncubationTime();
         }
         else
             this.state = State.HEALTHY;

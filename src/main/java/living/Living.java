@@ -46,19 +46,19 @@ public abstract class Living {
         {
             case SICK:
                 state = State.CONTAGIOUS;
-                setDaysToWait(4);
+                setDaysToWait(this.getSickness().getContagionTime());
                 break;
             case CONTAGIOUS:
                 Random dieChanceRnd = new Random();
                 double dieChance = dieChanceRnd.nextDouble();
-                if (dieChance < this.mortalityRate) {
+                if (dieChance/sickness.getSeverity() < this.mortalityRate) {
                     this.state = State.DEAD;
                     setDaysToWait(-1);
                 }
                 else
                 {
                     this.state = State.RECOVERING;
-                    setDaysToWait(3);
+                    setDaysToWait(this.getSickness().getRecoverTime());
                 }
                 break;
             case RECOVERING:

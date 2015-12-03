@@ -1,6 +1,7 @@
 package living;
 
 import enu.State;
+import sicknesses.H5N1;
 
 /**
  * Created by renaud on 26/11/2015.
@@ -9,7 +10,7 @@ public class Duck extends Flying {
 
     public Duck()
     {
-
+        sickness = new H5N1();
     }
 
     public Duck(State state)

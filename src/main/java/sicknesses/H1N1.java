@@ -11,4 +11,9 @@ public class H1N1 extends Sickness {
         this.recoverTime = 4;
         this.severity = 2;
     }
+
+    @Override
+    public String toString() {
+        return "H1N1{}";
+    }
 }
