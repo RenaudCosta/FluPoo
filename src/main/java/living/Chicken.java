@@ -11,6 +11,12 @@ public class Chicken extends Flying {
     public Chicken()
     {
         sickness = new H5N1();
+        if (this.isSickChance < this.sickRate) {
+            this.state = State.SICK;
+            this.daysToWait = sickness.getIncubationTime();
+        }
+        else
+            this.state = State.HEALTHY;
     }
 
     public Chicken(State state)

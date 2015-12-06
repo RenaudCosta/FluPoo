@@ -1,6 +1,7 @@
 package living;
 
 import enu.State;
+import sicknesses.H1N1;
 
 /**
  * Created by renaud on 26/11/2015.
@@ -11,6 +12,7 @@ public class Human extends Living {
 
     public Human()
     {
+        sickness = new H1N1();
         if (this.isSickChance < this.sickRate) {
             this.state = State.SICK;
             this.daysToWait = sickness.getIncubationTime();
