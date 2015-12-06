@@ -10,6 +10,7 @@ public class H5N1 extends Sickness {
         this.contagionTime = 6;
         this.recoverTime = 2;
         this.severity = 1.5;
+        this.contagionRate = 0.1;
     }
 
     @Override

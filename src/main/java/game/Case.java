@@ -2,6 +2,7 @@ package game;
 
 import enu.Direction;
 import enu.State;
+import living.Duck;
 import living.Human;
 import living.Living;
 
@@ -74,9 +75,13 @@ public class Case {
     public void contagion(Map map)
     {
         for (Direction dir : Direction.values()) {
-            if ((this.getNeighbour(map, dir) != null) && (this.getNeighbour(map, dir).getState()).equals(State.CONTAGIOUS)) {
+            if ((this.getNeighbour(map, dir) != null) && (this.getNeighbour(map, dir).getState()).equals(State.CONTAGIOUS) && (this.getEntity().getState().equals(State.HEALTHY))) {
                 Random rnd = new Random();
                 double sickChance = rnd.nextDouble();
+                if (sickChance < this.getNeighbour(map,dir).getSickness().getContagionRate())
+                {
+                    this.entity.becomeSick();
+                }
             }
         }
     }

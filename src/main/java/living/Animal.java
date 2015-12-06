@@ -16,6 +16,7 @@ public abstract class Animal extends Living {
         this.mortalityRate = 0.4;
     }
 
+
     @Override
     public void changeState()
     {

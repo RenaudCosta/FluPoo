@@ -21,7 +21,9 @@ public class Pig  extends Animal {
 
     public Pig(State state)
     {
+        sickness = new H5N1();
         this.state = state;
+        daysToWait = sickness.getIncubationTime();
     }
 
     public String toString()

@@ -24,7 +24,9 @@ public class Human extends Living {
 
     public Human(State state)
     {
+        sickness = new H1N1();
         this.state = state;
+        daysToWait = sickness.getIncubationTime();
     }
 
     @Override

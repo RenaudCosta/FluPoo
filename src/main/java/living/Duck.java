@@ -21,7 +21,9 @@ public class Duck extends Flying {
 
     public Duck(State state)
     {
+        sickness = new H5N1();
         this.state = state;
+        daysToWait = sickness.getIncubationTime();
     }
 
     public String toString()

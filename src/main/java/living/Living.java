@@ -11,7 +11,6 @@ import java.util.Random;
 public abstract class Living {
 
     protected State state;
-    protected double contagionRate;
     protected double isSickChance;
     protected double mortalityRate;
     protected Sickness sickness;
@@ -29,10 +28,11 @@ public abstract class Living {
         return state;
     }
 
-    public double getContagionRate()
-    {
-        return contagionRate;
+    public void becomeSick() {
+        this.state = State.SICK;
+        setDaysToWait(sickness.getIncubationTime());
     }
+
 
     public int getDaysToWait() { return daysToWait; }
 

@@ -9,10 +9,16 @@ public abstract class Sickness {
     protected int contagionTime;
     protected int recoverTime;
     protected double severity; // The random numbers chosen to decide whether Livings die or not get divided by this. (>=1)
+    protected double contagionRate;
 
     public Sickness()
     {
 
+    }
+
+    public double getContagionRate()
+    {
+        return contagionRate;
     }
 
     public int getIncubationTime() {
