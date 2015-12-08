@@ -88,15 +88,17 @@ public class Case {
 
     public void move(Map map)
     {
-        Random moveChanceRnd = new Random();
-        int moveChance = moveChanceRnd.nextInt(2);
-        if (moveChance == 1) {
-            Random rndDir = new Random();
-            int intDir = rndDir.nextInt(4);
-            Direction movingDirection = directions[intDir];
+        if (entity.getClass().getSimpleName().equals("Human")) {
+            Random moveChanceRnd = new Random();
+            int moveChance = moveChanceRnd.nextInt(2);
+            if (moveChance == 1) {
+                Random rndDir = new Random();
+                int intDir = rndDir.nextInt(4);
+                Direction movingDirection = directions[intDir];
 
-            if (this.getNeighbour(map,movingDirection) == null || !this.getNeighbour(map,movingDirection).getState().equals(State.DEAD))
-                this.swap(this.getNeighbourCase(map, movingDirection));
+                if (this.getNeighbour(map, movingDirection) == null)
+                    this.swap(this.getNeighbourCase(map, movingDirection));
+            }
         }
     }
 
