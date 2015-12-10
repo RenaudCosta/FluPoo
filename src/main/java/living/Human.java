@@ -5,6 +5,8 @@ import sicknesses.H1N1;
 import sicknesses.H5N1;
 import sicknesses.Sickness;
 
+import java.util.Random;
+
 /**
  * Created by renaud on 26/11/2015.
  */
@@ -19,6 +21,9 @@ public class Human extends Living {
         sicknesses[1] = new H5N1();
         if (this.isSickChance < this.sickRate) {
             this.state = State.SICK;
+            Random rnd = new Random();
+            int sickness = rnd.nextInt(2);
+            sicknesses[sickness].enable();
             this.daysToWait = getActiveSickness().getIncubationTime();
         }
         else

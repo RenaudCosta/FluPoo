@@ -15,6 +15,7 @@ public class Pig  extends Animal {
         sicknesses[0] = new H5N1();
         if (this.isSickChance < this.sickRate) {
             this.state = State.SICK;
+            sicknesses[0].enable();
             this.daysToWait = getActiveSickness().getIncubationTime();
         }
         else

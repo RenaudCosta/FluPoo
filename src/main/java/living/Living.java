@@ -28,9 +28,21 @@ public abstract class Living {
         return state;
     }
 
-    public void becomeSick() {
-        this.state = State.SICK;
-        setDaysToWait(getActiveSickness().getIncubationTime());
+    public void becomeSick(Sickness s) {
+        if (containsSickness(s,sicknesses)) {
+            this.state = State.SICK;
+            setDaysToWait(getActiveSickness().getIncubationTime());
+        }
+    }
+
+    public boolean containsSickness(Sickness s, Sickness[] sicknesses)
+    {
+        for (Sickness s1 : sicknesses)
+        {
+            if (s1.equals(s))
+                return true;
+        }
+        return false;
     }
 
 
@@ -63,6 +75,7 @@ public abstract class Living {
                 break;
             case RECOVERING:
                 state = State.HEALTHY;
+                getActiveSickness().disable();
                 setDaysToWait(-1);
         }
 
