@@ -64,7 +64,7 @@ public class Report {
         for (Case[] cases : map.getCases()) {
             for (Case c : cases) {
                 if (c.getEntity() != null) {
-                    if (c.getEntity().getState().equals(State.DEAD)) {
+                    if (c.isEntityDead()) {
                         totalDead++;
                     }
                     else if (c.getEntity().getState().equals(State.SICK) || c.getEntity().getState().equals(State.CONTAGIOUS))

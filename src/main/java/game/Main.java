@@ -18,6 +18,7 @@ public class Main {
             report.disp();
             map.simulateOneStep();
         }
+        report.disp();
 
 
     }
