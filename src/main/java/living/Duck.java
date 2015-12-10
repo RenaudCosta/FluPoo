@@ -28,7 +28,7 @@ public class Duck extends Animal {
         if (this.state.equals(State.HEALTHY))
             return "Duck";
         else if (this.state.equals(State.DEAD))
-            return "Dckx";
+            return "DCKX";
         else
             return "Dck"+daysToWait;
     }

@@ -28,7 +28,7 @@ public class Pig  extends Animal {
         if (this.state.equals(State.HEALTHY))
             return "Pigg";
         else if (this.state.equals(State.DEAD))
-            return "Pigx";
+            return "PIGX";
         else
             return "Pig"+daysToWait;
     }

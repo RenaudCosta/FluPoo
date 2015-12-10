@@ -37,7 +37,7 @@ public class Human extends Living {
         if (this.state.equals(State.HEALTHY))
             return "Hman";
         else if (this.state.equals(State.DEAD))
-            return "Hmnx";
+            return "HMNX";
         else
             return "Hmn"+daysToWait;
     }
