@@ -1,6 +1,7 @@
 package living;
 
 import enu.State;
+import sicknesses.H1N1;
 import sicknesses.H5N1;
 import sicknesses.Sickness;
 
@@ -12,7 +13,7 @@ public class Pig  extends Animal {
     public Pig()
     {
         sicknesses = new Sickness[1];
-        sicknesses[0] = new H5N1();
+        sicknesses[0] = new H1N1();
         if (this.isSickChance < this.sickRate) {
             this.state = State.SICK;
             sicknesses[0].enable();
