@@ -12,11 +12,12 @@ public class Main {
 
 
         Map map = new Map(10,10);
+        Report report = new Report(map);
 
         while (!map.gameOver()) {
+            report.disp();
             map.simulateOneStep();
         }
-
 
 
     }
