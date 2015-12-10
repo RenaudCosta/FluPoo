@@ -90,7 +90,11 @@ public class Case {
     {
         if (entity.getClass().getSimpleName().equals("Human")) {
             Random moveChanceRnd = new Random();
-            int moveChance = moveChanceRnd.nextInt(2);
+            int moveChance;
+            if (entity.getState().equals(State.HEALTHY))
+                moveChance = moveChanceRnd.nextInt(2);
+            else
+                moveChance = moveChanceRnd.nextInt(4);
             if (moveChance == 1) {
                 Random rndDir = new Random();
                 int intDir = rndDir.nextInt(4);
@@ -156,6 +160,11 @@ public class Case {
         c.setEntity(thisEntity);
         this.setEntity(otherEntity);
 
+    }
+
+    public boolean isEntityDead()
+    {
+        return (entity.getState().equals(State.DEAD));
     }
 
 
