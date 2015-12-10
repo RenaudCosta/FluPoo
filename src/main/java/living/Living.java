@@ -10,7 +10,7 @@ import java.util.Random;
  */
 public abstract class Living {
 
-    protected State state;
+    protected State state
     protected double isSickChance;
     protected double mortalityRate;
     protected Sickness sickness;
