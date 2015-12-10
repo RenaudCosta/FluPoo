@@ -2,29 +2,25 @@ package living;
 
 import enu.State;
 import sicknesses.H5N1;
+import sicknesses.Sickness;
 
 /**
  * Created by renaud on 26/11/2015.
  */
-public class Duck extends Flying {
+public class Duck extends Animal {
 
     public Duck()
     {
-        sickness = new H5N1();
+        sicknesses = new Sickness[1];
+        sicknesses[0] = new H5N1();
         if (this.isSickChance < this.sickRate) {
             this.state = State.SICK;
-            this.daysToWait = sickness.getIncubationTime();
+            this.daysToWait = getActiveSickness().getIncubationTime();
         }
         else
             this.state = State.HEALTHY;
     }
 
-    public Duck(State state)
-    {
-        sickness = new H5N1();
-        this.state = state;
-        daysToWait = sickness.getIncubationTime();
-    }
 
     public String toString()
     {

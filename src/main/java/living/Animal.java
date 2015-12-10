@@ -24,18 +24,18 @@ public abstract class Animal extends Living {
         {
             case SICK:
                 state = State.CONTAGIOUS;
-                setDaysToWait(this.getSickness().getContagionTime());
+                setDaysToWait(this.getActiveSickness().getContagionTime());
                 break;
             case CONTAGIOUS:
                 Random dieChanceRnd = new Random();
                 double dieChance = dieChanceRnd.nextDouble();
-                if (dieChance/sickness.getSeverity() < this.mortalityRate) {
+                if (dieChance/getActiveSickness().getSeverity() < this.mortalityRate) {
                     this.state = State.DEAD;
                     setDaysToWait(-1);
                 }
                 else {
                     this.state = State.CONTAGIOUS;
-                    setDaysToWait(this.getSickness().getContagionTime());
+                    setDaysToWait(this.getActiveSickness().getContagionTime());
                 }
                 break;
         }

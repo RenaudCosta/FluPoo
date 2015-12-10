@@ -10,10 +10,10 @@ import java.util.Random;
  */
 public abstract class Living {
 
-    protected State state
+    protected State state;
     protected double isSickChance;
     protected double mortalityRate;
-    protected Sickness sickness;
+    protected Sickness [] sicknesses;
 
     protected int daysToWait = -1;
 
@@ -30,7 +30,7 @@ public abstract class Living {
 
     public void becomeSick() {
         this.state = State.SICK;
-        setDaysToWait(sickness.getIncubationTime());
+        setDaysToWait(getActiveSickness().getIncubationTime());
     }
 
 
@@ -46,19 +46,19 @@ public abstract class Living {
         {
             case SICK:
                 state = State.CONTAGIOUS;
-                setDaysToWait(this.getSickness().getContagionTime());
+                setDaysToWait(this.getActiveSickness().getContagionTime());
                 break;
             case CONTAGIOUS:
                 Random dieChanceRnd = new Random();
                 double dieChance = dieChanceRnd.nextDouble();
-                if (dieChance/sickness.getSeverity() < this.mortalityRate) {
+                if (dieChance/getActiveSickness().getSeverity() < this.mortalityRate) {
                     this.state = State.DEAD;
                     setDaysToWait(-1);
                 }
                 else
                 {
                     this.state = State.RECOVERING;
-                    setDaysToWait(this.getSickness().getRecoverTime());
+                    setDaysToWait(this.getActiveSickness().getRecoverTime());
                 }
                 break;
             case RECOVERING:
@@ -69,15 +69,16 @@ public abstract class Living {
     }
 
 
-    public Sickness getSickness()
+    public Sickness getActiveSickness()
     {
-        return sickness;
+        for (Sickness s : sicknesses)
+        {
+            if (s.isActive())
+                return s;
+        }
+        return null;
     }
 
-    public void setSickness(Sickness s)
-    {
-        sickness = s;
-    }
 
     public String toString()
     {

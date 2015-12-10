@@ -2,6 +2,8 @@ package living;
 
 import enu.State;
 import sicknesses.H1N1;
+import sicknesses.H5N1;
+import sicknesses.Sickness;
 
 /**
  * Created by renaud on 26/11/2015.
@@ -12,22 +14,18 @@ public class Human extends Living {
 
     public Human()
     {
-        sickness = new H1N1();
+        sicknesses = new Sickness[2];
+        sicknesses[0] = new H1N1();
+        sicknesses[1] = new H5N1();
         if (this.isSickChance < this.sickRate) {
             this.state = State.SICK;
-            this.daysToWait = sickness.getIncubationTime();
+            this.daysToWait = getActiveSickness().getIncubationTime();
         }
         else
             this.state = State.HEALTHY;
         mortalityRate = 0.1;
     }
 
-    public Human(State state)
-    {
-        sickness = new H1N1();
-        this.state = state;
-        daysToWait = sickness.getIncubationTime();
-    }
 
     @Override
     public String toString() {
