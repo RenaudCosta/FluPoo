@@ -78,9 +78,9 @@ public class Case {
             if ((this.getNeighbour(map, dir) != null) && (this.getNeighbour(map, dir).getState()).equals(State.CONTAGIOUS) && (this.getEntity().getState().equals(State.HEALTHY))) {
                 Random rnd = new Random();
                 double sickChance = rnd.nextDouble();
-                if (sickChance < this.getNeighbour(map,dir).getSickness().getContagionRate())
+                if (sickChance < this.getNeighbour(map,dir).getActiveSickness().getContagionRate())
                 {
-                    this.entity.becomeSick();
+                    this.entity.becomeSick(getNeighbour(map,dir).getActiveSickness());
                 }
             }
         }
