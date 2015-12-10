@@ -2,29 +2,26 @@ package living;
 
 import enu.State;
 import sicknesses.H5N1;
+import sicknesses.Sickness;
 
 /**
  * Created by renaud on 26/11/2015.
  */
-public class Chicken extends Flying {
+public class Chicken extends Animal {
 
     public Chicken()
     {
-        sickness = new H5N1();
+        sicknesses = new Sickness[1];
+        sicknesses[0] = new H5N1();
         if (this.isSickChance < this.sickRate) {
             this.state = State.SICK;
-            this.daysToWait = sickness.getIncubationTime();
+            sicknesses[0].enable();
+            this.daysToWait = getActiveSickness().getIncubationTime();
         }
         else
             this.state = State.HEALTHY;
     }
 
-    public Chicken(State state)
-    {
-        sickness = new H5N1();
-        this.state = state;
-        daysToWait = sickness.getIncubationTime();
-    }
 
     public String toString()
     {
