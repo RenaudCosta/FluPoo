@@ -12,7 +12,7 @@ import java.util.Random;
  */
 public class Map {
 
-    //définition de la correspondance entre des nombres de 0 à 7 et les directions.
+    //dï¿½finition de la correspondance entre des nombres de 0 ï¿½ 7 et les directions.
     private final static Direction[] directions = {Direction.NORTH,Direction.WEST,Direction.SOUTH,Direction.EAST,Direction.NORTHWEST,Direction.NORTHEAST,Direction.SOUTHWEST,Direction.SOUTHEAST};
 
     private final static int DEFAULT_HUMANRATE = 5;
@@ -92,7 +92,7 @@ public class Map {
             {
                 if (c.getEntity() != null && !c.getEntity().getState().equals(State.DEAD)) {
 
-                    //Mettre a jour l'etat des entités malades
+                    //Mettre a jour l'etat des entitï¿½s malades
                     c.updateState();
 
                     //NEIGHBOUR IS CONTAGIOUS -> PROBABILITY OF GETTING SICK
@@ -103,7 +103,7 @@ public class Map {
                 }
             }
         }
-        System.out.println(this);
+        //System.out.println(this);
     }
 
     public Case[][] getCases()
@@ -159,5 +159,14 @@ public class Map {
             }
         }
         return true;
+    }
+
+    public Object getObjectAt(int row, int col) {
+        if(cases[row][col].getEntity() != null){
+            return cases[row][col].getEntity();
+        }
+        else {
+            return null;
+        }
     }
 }

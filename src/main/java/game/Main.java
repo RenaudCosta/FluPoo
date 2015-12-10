@@ -1,6 +1,7 @@
 package game;
 
 import enu.State;
+import gui.Simulator;
 import living.Human;
 import living.Living;
 import living.Pig;
@@ -8,21 +9,7 @@ import living.Pig;
 public class Main {
 
     public static void main(String[] args) {
-	// write your code here
-
-
-        Map map = new Map(10,10);
-        Report report = new Report(map);
-
-        while (!map.gameOver()) {
-            report.disp();
-            map.simulateOneStep();
-        }
-        report.disp();
-
-
+        Simulator simulator = new Simulator(200, 200);
+        simulator.simulate();
     }
-
-
-
 }

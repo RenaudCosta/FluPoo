@@ -109,9 +109,9 @@ public class Case {
     public void updateState()
     {
         if (this.getEntity().getDaysToWait() > 0)
-            this.getEntity().decrDaysToWait(); // On ne change pas encore l'etat, on baisse d'un jour la duree a attendre pour changer d'état
+            this.getEntity().decrDaysToWait(); // On ne change pas encore l'etat, on baisse d'un jour la duree a attendre pour changer d'ï¿½tat
         if (this.getEntity().getDaysToWait() == 0)
-            this.getEntity().changeState(); // On change l'etat de l'entité
+            this.getEntity().changeState(); // On change l'etat de l'entitï¿½
     }
 
     public Case getNeighbourCase(Map map, Direction dir)
