@@ -25,11 +25,12 @@ public class Chicken extends Animal {
 
     public String toString()
     {
-        if (this.state.equals(State.HEALTHY))
+        /*if (this.state.equals(State.HEALTHY))
             return "Chck";
         else if (this.state.equals(State.DEAD))
             return "CHKX";
         else
-            return "Chk"+daysToWait;
+            return "Chk"+daysToWait;*/
+        return "Chicken";
     }
 }

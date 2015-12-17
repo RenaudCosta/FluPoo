@@ -58,14 +58,14 @@ public class Simulator {
         SimulatorView view = new GridView(height, width);
         view.setColor(Human.class, Color.RED);
         view.setColor(Pig.class, Color.PINK);
-        //view.setColor(Chicken.class, Color.YELLOW);
+        view.setColor(Chicken.class, Color.YELLOW);
         view.setColor(Duck.class, Color.GREEN);
         views.add(view);
 
         view = new GraphView(500, 150, 500);
         view.setColor(Human.class, Color.RED);
         view.setColor(Pig.class, Color.PINK);
-        //view.setColor(Chicken.class, Color.YELLOW);
+        view.setColor(Chicken.class, Color.YELLOW);
         view.setColor(Duck.class, Color.GREEN);
         views.add(view);
 

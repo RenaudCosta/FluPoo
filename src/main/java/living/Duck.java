@@ -25,12 +25,13 @@ public class Duck extends Animal {
 
     public String toString()
     {
-        if (this.state.equals(State.HEALTHY))
+        /*if (this.state.equals(State.HEALTHY))
             return "Duck";
         else if (this.state.equals(State.DEAD))
             return "DCKX";
         else
-            return "Dck"+daysToWait;
+            return "Dck"+daysToWait;*/
+        return "Duck";
     }
 
 }

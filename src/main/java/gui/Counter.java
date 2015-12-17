@@ -51,7 +51,8 @@ public class Counter
     {
         count++;
     }
-    
+
+    public void decrement() {count--;}
     /**
      * Reset the current count to zero.
      */

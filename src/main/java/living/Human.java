@@ -34,11 +34,12 @@ public class Human extends Living {
 
     @Override
     public String toString() {
-        if (this.state.equals(State.HEALTHY))
+        /*if (this.state.equals(State.HEALTHY))
             return "Hman";
         else if (this.state.equals(State.DEAD))
             return "HMNX";
         else
-            return "Hmn"+daysToWait;
+            return "Hmn"+daysToWait;*/
+        return "Human";
     }
 }

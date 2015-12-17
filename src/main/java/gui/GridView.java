@@ -83,7 +83,7 @@ public class GridView extends JFrame implements SimulatorView {
         Color col = colors.get(animalClass);
         if (col == null) {
             // no color defined for this class
-            return UNKNOWN_COLOR;
+            return EMPTY_COLOR;
         } else {
             return col;
         }
@@ -103,7 +103,7 @@ public class GridView extends JFrame implements SimulatorView {
         }
 
         stepLabel.setText(STEP_PREFIX + step);
-        stats.reset();
+        //stats.reset();
 
         fieldView.preparePaint();
 
@@ -115,7 +115,7 @@ public class GridView extends JFrame implements SimulatorView {
                         fieldView.drawMark(col, row, Color.BLACK);
                     }
                     else {
-                        stats.incrementCount(animal.getClass());
+                        //stats.incrementCount(animal.getClass());
                         fieldView.drawMark(col, row, getColor(animal.getClass()));
                     }
                 } else {
@@ -123,7 +123,7 @@ public class GridView extends JFrame implements SimulatorView {
                 }
             }
         }
-        stats.countFinished();
+//        stats.countFinished();
 
         /*population.setText(POPULATION_PREFIX
                 + stats.getPopulationDetails(field));*/
