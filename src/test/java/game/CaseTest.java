@@ -21,7 +21,7 @@ public class CaseTest {
     @Test
     public void testGetNeighbour() throws Exception {
 
-        Map map = new Map(3,3,1,0,0,0);
+        Map map = new Map(3,3,1,0,0,0,8);
         Human h = new Human();
         Pig p = new Pig();
         Chicken c = new Chicken();

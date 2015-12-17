@@ -4,6 +4,7 @@ import enu.Direction;
 import enu.State;
 import game.*;
 import game.Map;
+import game.Timer;
 import living.*;
 
 import java.util.*;
@@ -27,9 +28,15 @@ public class Simulator {
     private final static int DEFAULT_WIDTH = 200;
     private final static int DEFAULT_HEIGHT = 100;
 
+    private final static int DEFAULT_CONTAGION = 4;
+
+    private final static int DEFAULT_TIME = 1;
+
     private Map map;
     private int step;
     private List<SimulatorView> views;
+
+    private long time;
 
     private Case[][] cases;
 
@@ -40,12 +47,13 @@ public class Simulator {
     public Simulator(int width, int height)
     {
         //Construire la map : Rates par defaut
-        this(width, height, DEFAULT_HUMANRATE, DEFAULT_DUCKRATE, DEFAULT_CHICKENRATE, DEFAULT_PIGRATE);
+        this(width, height, DEFAULT_HUMANRATE, DEFAULT_DUCKRATE, DEFAULT_CHICKENRATE, DEFAULT_PIGRATE,DEFAULT_CONTAGION,DEFAULT_TIME);
     }
 
-    public Simulator(int width, int height, int hr, int dr, int cr, int pr)
+    public Simulator(int width, int height, int hr, int dr, int cr, int pr, int contagion,long time)
     {
-        map = new Map(width, height, hr, dr, cr, pr);
+        this.time = time;
+        map = new Map(width, height, hr, dr, cr, pr, contagion);
         views = new ArrayList<>();
         SimulatorView view = new GridView(height, width);
         view.setColor(Human.class, Color.RED);
@@ -66,10 +74,20 @@ public class Simulator {
     }
 
     public void simulate() {
-        //int cpt = 0;
-        while(!map.gameOver()){
-            simulateOneStep();
-            //cpt++;
+
+        try {
+            Timer timer = new Timer(this.time);
+            while (!map.gameOver()) {
+                synchronized (timer) {
+                simulateOneStep();
+                timer.sleep();
+                    System.out.println(map.gameOver());
+                }
+            }
+        }
+        catch (InterruptedException e)
+        {
+            e.printStackTrace();
         }
     }
 

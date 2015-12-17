@@ -9,7 +9,7 @@ import living.Pig;
 public class Main {
 
     public static void main(String[] args) {
-        Simulator simulator = new Simulator(200, 200);
+        Simulator simulator = new Simulator(200, 200,2,2,2,2,8,500);
         simulator.simulate();
     }
 }
