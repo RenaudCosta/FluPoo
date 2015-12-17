@@ -50,7 +50,6 @@ public class GridView extends JFrame implements SimulatorView {
 
         setTitle("Fox and Rabbit Simulation");
         stepLabel = new JLabel(STEP_PREFIX, JLabel.CENTER);
-        population = new JLabel(POPULATION_PREFIX, JLabel.CENTER);
 
         setLocation(20, 50);
 
@@ -59,7 +58,6 @@ public class GridView extends JFrame implements SimulatorView {
         Container contents = getContentPane();
         contents.add(stepLabel, BorderLayout.NORTH);
         contents.add(fieldView, BorderLayout.CENTER);
-        contents.add(population, BorderLayout.SOUTH);
         pack();
         setVisible(true);
     }

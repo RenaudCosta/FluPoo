@@ -17,7 +17,7 @@ import java.awt.Color;
  * @author David J. Barnes and Michael Kölling
  * @version 2011.07.31
  */
-public class Simulator {
+public class Simulator implements Runnable{
 
     private final static Direction[] directions = {Direction.NORTH,Direction.WEST,Direction.SOUTH,Direction.EAST,Direction.NORTHWEST,Direction.NORTHEAST,Direction.SOUTHWEST,Direction.SOUTHEAST};
     private final static int DEFAULT_HUMANRATE = 5;
@@ -37,6 +37,13 @@ public class Simulator {
     private List<SimulatorView> views;
 
     private long time;
+    private int width;
+    private  int height;
+    private int humanRate;
+    private int pigRate;
+    private int chickenRate;
+    private int ducksRate;
+    private int contagion;
 
     private Case[][] cases;
 
@@ -52,25 +59,20 @@ public class Simulator {
 
     public Simulator(int width, int height, int hr, int dr, int cr, int pr, int contagion,long time)
     {
+        start(width, height, hr, dr, cr, pr, contagion, time);
+        Thread thread = new Thread(this);
+        thread.start();
+    }
+
+    public void start(int width, int height, int hr, int dr, int cr, int pr, int contagion,long time){
+        this.width = width;
+        this.height = height;
+        this.humanRate = hr;
+        this.chickenRate = cr;
+        this.ducksRate = dr;
+        this.pigRate = pr;
+        this.contagion = contagion;
         this.time = time;
-        map = new Map(width, height, hr, dr, cr, pr, contagion);
-        views = new ArrayList<>();
-        SimulatorView view = new GridView(height, width);
-        view.setColor(Human.class, Color.RED);
-        view.setColor(Pig.class, Color.PINK);
-        view.setColor(Chicken.class, Color.YELLOW);
-        view.setColor(Duck.class, Color.GREEN);
-        views.add(view);
-
-        view = new GraphView(500, 150, 500);
-        view.setColor(Human.class, Color.RED);
-        view.setColor(Pig.class, Color.PINK);
-        view.setColor(Chicken.class, Color.YELLOW);
-        view.setColor(Duck.class, Color.GREEN);
-        views.add(view);
-
-        // Setup a valid starting point.
-        reset();
     }
 
     public void simulate() {
@@ -79,9 +81,8 @@ public class Simulator {
             Timer timer = new Timer(this.time);
             while (!map.gameOver()) {
                 synchronized (timer) {
-                simulateOneStep();
-                timer.sleep();
-                    System.out.println(map.gameOver());
+                    simulateOneStep();
+                    timer.sleep();
                 }
             }
         }
@@ -111,6 +112,26 @@ public class Simulator {
         for (SimulatorView view : views) {
             view.showStatus(step, map);
         }
+    }
+
+    @Override
+    public void run() {
+        map = new Map(width, height, humanRate, ducksRate, chickenRate, pigRate, contagion);
+        views = new ArrayList<>();
+        SimulatorView view = new GridView(height, width);
+        view.setColor(Human.class, Color.RED);
+        view.setColor(Pig.class, Color.PINK);
+        view.setColor(Chicken.class, Color.YELLOW);
+        view.setColor(Duck.class, Color.GREEN);
+        views.add(view);
+
+        view = new GraphView(500, 150, 500);
+        view.setColor(Human.class, Color.RED);
+        view.setColor(Pig.class, Color.PINK);
+        view.setColor(Chicken.class, Color.YELLOW);
+        view.setColor(Duck.class, Color.GREEN);
+        views.add(view);
+        simulate();
     }
 }
 
