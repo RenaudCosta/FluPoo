@@ -74,7 +74,17 @@ public class Case {
 
     public void contagion(Map map)
     {
-        for (Direction dir : Direction.values()) {
+        Direction[] directions;
+        if (map.getContagion() == 8)
+            directions = Direction.values();
+        else {
+            directions = new Direction[4];
+            directions[0] = Direction.NORTH;
+            directions[1] = Direction.SOUTH;
+            directions[2] = Direction.EAST;
+            directions[3] = Direction.WEST;
+        }
+        for (Direction dir : directions) {
             if ((this.getNeighbour(map, dir) != null) && (this.getNeighbour(map, dir).getState()).equals(State.CONTAGIOUS) && (this.getEntity().getState().equals(State.HEALTHY))) {
                 Random rnd = new Random();
                 double sickChance = rnd.nextDouble();

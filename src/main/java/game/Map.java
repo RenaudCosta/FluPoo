@@ -23,8 +23,11 @@ public class Map {
     private final static int DEFAULT_WIDTH = 200;
     private final static int DEFAULT_HEIGHT = 100;
 
+    private final static int DEFAULT_CONTAGION = 4;
+
     int width;
     int height;
+    int contagion;
 
 
 
@@ -39,13 +42,14 @@ public class Map {
     public Map(int width, int height)
     {
         //Construire la map : Rates par defaut
-        this(width, height, DEFAULT_HUMANRATE, DEFAULT_DUCKRATE, DEFAULT_CHICKENRATE, DEFAULT_PIGRATE);
+        this(width, height, DEFAULT_HUMANRATE, DEFAULT_DUCKRATE, DEFAULT_CHICKENRATE, DEFAULT_PIGRATE,DEFAULT_CONTAGION);
     }
 
-    public Map(int width, int height, int hr, int dr, int cr, int pr)
+    public Map(int width, int height, int hr, int dr, int cr, int pr, int contagion)
     {
         this.width = width;
         this.height = height;
+        this.contagion = contagion;
         //Construire la map.
         cases = new Case[width][height];
         for (int i = 0; i < width; i++)
@@ -168,5 +172,9 @@ public class Map {
         else {
             return null;
         }
+    }
+
+    public int getContagion() {
+        return contagion;
     }
 }

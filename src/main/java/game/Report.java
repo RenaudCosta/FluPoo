@@ -61,6 +61,7 @@ public class Report {
         h1n1Victims = 0;
         h5n1Victims = 0;
         totalDead = 0;
+        
         for (Case[] cases : map.getCases()) {
             for (Case c : cases) {
                 if (c.getEntity() != null) {
