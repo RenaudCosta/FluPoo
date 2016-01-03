@@ -20,17 +20,17 @@ import java.awt.Color;
 public class Simulator implements Runnable{
 
     private final static Direction[] directions = {Direction.NORTH,Direction.WEST,Direction.SOUTH,Direction.EAST,Direction.NORTHWEST,Direction.NORTHEAST,Direction.SOUTHWEST,Direction.SOUTHEAST};
-    private final static int DEFAULT_HUMANRATE = 5;
-    private final static int DEFAULT_DUCKRATE = 1;
-    private final static int DEFAULT_CHICKENRATE = 2;
-    private final static int DEFAULT_PIGRATE = 3;
+    private final static double DEFAULT_HUMANRATE = 5;
+    private final static double DEFAULT_DUCKRATE = 1;
+    private final static double DEFAULT_CHICKENRATE = 2;
+    private final static double DEFAULT_PIGRATE = 3;
 
     private final static int DEFAULT_WIDTH = 200;
     private final static int DEFAULT_HEIGHT = 100;
 
     private final static int DEFAULT_CONTAGION = 4;
 
-    private final static int DEFAULT_TIME = 1;
+    private final static double DEFAULT_TIME = 1;
 
     private Map map;
     private int step;
@@ -57,22 +57,22 @@ public class Simulator implements Runnable{
         this(width, height, DEFAULT_HUMANRATE, DEFAULT_DUCKRATE, DEFAULT_CHICKENRATE, DEFAULT_PIGRATE,DEFAULT_CONTAGION,DEFAULT_TIME);
     }
 
-    public Simulator(int width, int height, int hr, int dr, int cr, int pr, int contagion,long time)
+    public Simulator(int width, int height, double hr, double dr, double cr, double pr, int contagion,double time)
     {
         start(width, height, hr, dr, cr, pr, contagion, time);
         Thread thread = new Thread(this);
         thread.start();
     }
 
-    public void start(int width, int height, int hr, int dr, int cr, int pr, int contagion,long time){
+    public void start(int width, int height, double hr, double dr, double cr, double pr, int contagion,double time){
         this.width = width;
         this.height = height;
-        this.humanRate = hr;
-        this.chickenRate = cr;
-        this.ducksRate = dr;
-        this.pigRate = pr;
+        this.humanRate = (int)hr;
+        this.chickenRate = (int)cr;
+        this.ducksRate = (int)dr;
+        this.pigRate = (int)pr;
         this.contagion = contagion;
-        this.time = time;
+        this.time = (long)time;
     }
 
     public void simulate() {
@@ -104,7 +104,6 @@ public class Simulator implements Runnable{
             view.reset();
         }
 
-        //populate();
         updateViews();
     }
 

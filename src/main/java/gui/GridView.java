@@ -60,6 +60,7 @@ public class GridView extends JFrame implements SimulatorView {
         contents.add(fieldView, BorderLayout.CENTER);
         pack();
         setVisible(true);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 
     /**

@@ -10,6 +10,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.geom.Arc2D;
 
 public class Main extends JFrame{
 
@@ -57,7 +58,6 @@ public class Main extends JFrame{
 
         JPanel contagionPanel = new JPanel();
         JLabel labelcontagion = new JLabel("Contagion neighbour type");
-        //this.contagion = new JTextField("10");
 
         Integer[] contagion = new Integer[2];
         contagion[0] = 4;
@@ -79,7 +79,7 @@ public class Main extends JFrame{
 
         JPanel speedPanel = new JPanel();
         JLabel labelSpeed = new JLabel("Speed of the simulation (milliseconds per day)");
-        this.speed = new JTextField("10");
+        this.speed = new JTextField("100");
 
         speedPanel.add(labelSpeed);
         speedPanel.add(this.speed);
@@ -89,12 +89,12 @@ public class Main extends JFrame{
         this.launchButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Simulator simulator = new Simulator(100, 100, Integer.parseInt(propHumans.getText()),
-                                                              Integer.parseInt(propDucks.getText()),
-                                                              Integer.parseInt(propChickens.getText()),
-                                                              Integer.parseInt(propPigs.getText()),
+                Simulator simulator = new Simulator(100, 100, Double.parseDouble(propHumans.getText()),
+                        Double.parseDouble(propDucks.getText()),
+                        Double.parseDouble(propChickens.getText()),
+                        Double.parseDouble(propPigs.getText()),
                                                               contagionType,
-                                                              Integer.parseInt(speed.getText()));
+                        Double.parseDouble(speed.getText()));
                 setVisible(false);
                 dispose();
             }
@@ -113,6 +113,7 @@ public class Main extends JFrame{
         this.setContentPane(mainPanel);
         this.pack();
         this.setVisible(true);
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 
     public static void main(String[] args) {
