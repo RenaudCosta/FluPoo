@@ -96,6 +96,7 @@ public class Simulator implements Runnable{
         step++;
         map.simulateOneStep();
         updateViews();
+
     }
 
     public void reset() {
